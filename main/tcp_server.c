@@ -82,11 +82,20 @@ esp_err_t tcp_server_send(uint8_t *payload, size_t size)
         return ESP_OK;
     }
 
+    if ( xRingbufferSend(s_server->buffer, "\xff\xd8", 2, pdMS_TO_TICKS(1)) != pdTRUE ) {
+        ESP_LOGW(TAG, "Failed to send frame to ring buffer.");
+        return ESP_FAIL;
+    }
+
     if ( xRingbufferSend(s_server->buffer, payload, size, pdMS_TO_TICKS(1)) != pdTRUE ) {
         ESP_LOGW(TAG, "Failed to send frame to ring buffer.");
         return ESP_FAIL;
     }
 
+    if ( xRingbufferSend(s_server->buffer, "\xff\xd9", 2, pdMS_TO_TICKS(1)) != pdTRUE ) {
+        ESP_LOGW(TAG, "Failed to send frame to ring buffer.");
+        return ESP_FAIL;
+    }
     return ESP_OK;
 }
 

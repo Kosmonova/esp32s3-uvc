@@ -24,10 +24,10 @@ static const char *TAG = "example";
 
 #define USB_DISCONNECT_PIN  GPIO_NUM_0
 
-#define FPS 30
-#define WIDTH 320
-#define HEIGHT 240
-#define FORMAT UVC_COLOR_FORMAT_MJPEG // UVC_COLOR_FORMAT_YUYV
+#define FPS 0
+#define WIDTH 160
+#define HEIGHT 120
+#define FORMAT UVC_COLOR_FORMAT_UNKNOWN // UVC_COLOR_FORMAT_YUYV
 
 // Attached camera can be filtered out based on (non-zero value of) PID, VID, SERIAL_NUMBER
 #define PID 0
